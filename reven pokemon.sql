@@ -17,11 +17,6 @@ EXPLAIN ANALYZE SELECT * FROM clientes WHERE nome ILIKE '%ash%';
 -- Pode gerar erro se houver caracteres não numéricos
 ALTER TABLE clientes ALTER COLUMN telefone TYPE BIGINT USING telefone::bigint;
 
--- Caso haja erro, rodar essa limpeza antes (removendo caracteres não numéricos)
--- UPDATE clientes SET telefone = regexp_replace(telefone, '[^0-9]', '', 'g');
--- Depois tentar alterar novamente:
--- ALTER TABLE clientes ALTER COLUMN telefone TYPE BIGINT USING telefone::bigint;
-
 -- 6. Alterar coluna estoque (int) para varchar
 ALTER TABLE produtos ALTER COLUMN estoque TYPE VARCHAR(10);
 
@@ -112,5 +107,6 @@ UPDATE pagamentos SET data_pagamento = '2025-08-10' WHERE data_pagamento IS NULL
 UPDATE pedidos SET status = 'Pago' WHERE status IS NULL;
 
 -- 12. Executar novamente as consultas JOIN para comparar resultados (igual as consultas acima)
+
 
 
